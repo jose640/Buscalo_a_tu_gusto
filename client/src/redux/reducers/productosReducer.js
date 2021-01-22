@@ -1,7 +1,17 @@
-import { BUSCAR_POR_DESCENDENTE, BUSCAR_POR_ASCENDENTE, OBTENER_PRODUCTOS } from "../types";
+import {
+  BUSCAR_POR_DESCENDENTE,
+  BUSCAR_POR_ASCENDENTE,
+  OBTENER_PRODUCTOS,
+  PAGINA_UNO,
+  PAGINA_DOS,
+  BUSCAR_POR_CONDICION_NEW,
+  BUSCAR_POR_CONDICION_USED,
+} from "../types";
 
 const initialState = {
   productos: [],
+  condicionnew: [],
+  condicionused: [],
 };
 
 export function productosReducer(state = initialState, action) {
@@ -13,14 +23,34 @@ export function productosReducer(state = initialState, action) {
       };
     case BUSCAR_POR_ASCENDENTE:
       return {
-        ...state,
-        productos: action.payload,
+        productos: state.productos.map((producto) => {
+          if (producto.id === action.payload.id) {
+            return { ...action.payload };
+          } else {
+            return producto;
+          }
+        }),
       };
     case BUSCAR_POR_DESCENDENTE:
-        return {
-          ...state,
-          productos: action.payload,
-        };
+      return {
+        productos: state.productos.map((producto) => {
+          if (producto.id === action.payload.id) {
+            return { ...action.payload };
+          } else {
+            return producto;
+          }
+        }),
+      };
+    case BUSCAR_POR_CONDICION_NEW:
+      return {
+        ...state,
+        condicionnew: action.payload,
+      };
+    case BUSCAR_POR_CONDICION_USED:
+      return {
+        ...state,
+        condicionused: action.payload,
+      };
     default:
       return state;
   }

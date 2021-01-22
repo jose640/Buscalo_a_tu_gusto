@@ -3,6 +3,8 @@ import {
   OBTENER_PRODUCTOS,
   BUSCAR_POR_ASCENDENTE,
   BUSCAR_POR_DESCENDENTE,
+  BUSCAR_POR_CONDICION_NEW,
+  BUSCAR_POR_CONDICION_USED,
 } from "../types";
 
 export const obtenerProductos = (nomProduct) => async (dispatch) => {
@@ -24,7 +26,6 @@ export const buscarPor = (filtro, products) => async (dispatch) => {
   switch (filtro) {
     case "ascendente":
       const ascend = products.sort((a1, a2) => a1.price - a2.price);
-      console.log(ascend);
       dispatch({
         type: BUSCAR_POR_ASCENDENTE,
         payload: ascend,
@@ -37,9 +38,29 @@ export const buscarPor = (filtro, products) => async (dispatch) => {
         payload: descend,
       });
       break;
-    case "condicion":
+    case "new":
+      const condnew = products.filter(pro => {
+        if(pro.condition !== "used") {
+          return pro;
+        }
+      });
+      dispatch({
+        type:BUSCAR_POR_CONDICION_NEW,
+        payload: condnew,
+      });
       break;
-
+    case "used":
+      const condused = products.filter(pro => {
+        if(pro.condition !== "new"){
+          return pro;
+        }
+      });
+      console.log(condused);
+      dispatch({
+        type:BUSCAR_POR_CONDICION_USED,
+        payload: condused,
+      });
+      break;
     default:
       try {
         throw new Error("El estado no coincide");
