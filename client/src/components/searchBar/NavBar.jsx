@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { buscarPor, paginacion } from "../../redux";
 import { SearchBar } from './SearchBar';
 
 export const NavBar = () => {
     const dispatch = useDispatch(); 
-    const [cerrar, setCerrar] = useState(true);
     const products = useSelector((store) => store.productos.productos);
+    const [cerrar, setCerrar] = useState(true);
+    
 
     const abrirModal = () => {
         setCerrar(true);
@@ -17,7 +18,7 @@ export const NavBar = () => {
       };
 
     const buscador = (b) => {
-        dispatch(buscarPor(b, products));
+        dispatch(buscarPor(b, products));        
     };
 
     return (

@@ -5,14 +5,12 @@ import { ProductCard } from "../../components"
 
 export const Catalogo = () => {
     const products = useSelector((store) => store.productos.productos);
-  /*   const condnew = useSelector((store) => store.productos.condicionnew);
-    const condused = useSelector((store) => store.productos.condicionused); */
-
+ 
+ 
+console.log(products);
     const [ paginacion, setPaginacion ] = useState(null);
  
-    let pagNum = 1;
-    const pageCont = Math.ceil(products.length/30);
-     
+    let pagNum = 1;     
     const paginate = (array, tamanoPag, pagNum) => {
         return array.slice( (pagNum - 1) * tamanoPag,  pagNum * tamanoPag);
     }

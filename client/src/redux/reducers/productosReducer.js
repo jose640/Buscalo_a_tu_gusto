@@ -2,8 +2,6 @@ import {
   BUSCAR_POR_DESCENDENTE,
   BUSCAR_POR_ASCENDENTE,
   OBTENER_PRODUCTOS,
-  PAGINA_UNO,
-  PAGINA_DOS,
   BUSCAR_POR_CONDICION_NEW,
   BUSCAR_POR_CONDICION_USED,
 } from "../types";
@@ -48,8 +46,7 @@ export function productosReducer(state = initialState, action) {
       };
     case BUSCAR_POR_CONDICION_USED:
       return {
-        ...state,
-        condicionused: action.payload,
+        productos: action.payload,
       };
     default:
       return state;

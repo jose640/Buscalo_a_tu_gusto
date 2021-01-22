@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
 import { obtenerProductos } from "../../redux";
 import "bootstrap/dist/css/bootstrap.css";
@@ -21,11 +21,6 @@ export const SearchBar = ({cerrarModal, estado}) => {
     }
   };
 
- /*  useEffect(() => {
-    if(product.length > 2) {
-      dispatch(obtenerProductos(product));
-    }
-  },[]) */
 
     return (
         <>

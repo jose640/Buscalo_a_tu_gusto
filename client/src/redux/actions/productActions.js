@@ -44,6 +44,7 @@ export const buscarPor = (filtro, products) => async (dispatch) => {
           return pro;
         }
       });
+      console.log(condnew);
       dispatch({
         type:BUSCAR_POR_CONDICION_NEW,
         payload: condnew,
